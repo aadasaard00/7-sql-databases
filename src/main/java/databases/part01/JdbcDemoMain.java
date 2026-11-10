@@ -42,7 +42,7 @@ public class JdbcDemoMain {
             connection = DriverManager.getConnection(JDBC_CONNECTION_STRING);
 
             // Create a prepared statement to execute a query
-            preparedStatement = connection.prepareStatement("SELECT ArtistId, Name FROM Artist ORDER BY ArtistId ASC");
+            preparedStatement = connection.prepareStatement("SELECT ArtistId, Name FROM Artist ORDER BY name ASC");
 
             // Execute the query and get the result set
             resultSet = preparedStatement.executeQuery();
@@ -64,8 +64,9 @@ public class JdbcDemoMain {
                  * data, such as getInt() and getDouble().
                  */
                 String name = resultSet.getString("Name");
+                long id = resultSet.getLong("ArtistId");
 
-                System.out.println(name);
+                System.out.println(name + "(" + id + ")");
             }
         } catch (SQLException e) {
             /*
